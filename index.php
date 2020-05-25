@@ -2,18 +2,23 @@
 
 require_once("vendor/autoload.php");
 
+//use \Slim\Slim;
+use \Hcode\Page;
+
 $app = new \Slim\Slim();
+
+//$app = new Slim();
 
 $app->config('debug', true);
 
 $app->get('/', function() {
     
-	$sql = new Hcode\DB\Sql();
 
-	$results = $sql->select("SELECT * FROM tb_users");
+	$page = new Page(); // neste momento ele vai chamar o construct e vai chamar o header.html na tela muito loco
 
-	echo json_encode($results);
+	$page->setTpl("index");
 
+	
 });
 
 $app->run();
